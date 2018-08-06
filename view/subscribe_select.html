@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>排队预约</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="../css/weui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
+		<style>
+			.weui-cells__title{
+				padding: 5px 10px;
+				font-size: 16px;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div class="page">
+			<div class="weui-cells__title">地址选择</div>
+			<div class="weui-cells">
+			  <a class="weui-cell weui-cell_access" href="javascript:;">
+			    <div class="weui-cell__bd">
+			      <p>江北人社局</p>
+			    </div>
+			    <div class="weui-cell__ft"> 
+			    </div>
+			  </a>
+			  <a class="weui-cell weui-cell_access" href="javascript:;">
+			    <div class="weui-cell__bd">
+			      <p>江南人社局</p>
+			    </div>
+			    <div class="weui-cell__ft">江南人才多
+			    </div>
+			  </a>
+			</div>
+		</div>
+		<div class="weui-msg__opr-area" style="margin-top: 20px;">
+		    <p class="weui-btn-area">
+		      <a href="javascript:;" class="weui-btn weui-btn_primary">查看预约信息（今天	）</a>
+		    </p>
+		  </div>
+		<script src="../js/jquery-2.1.4.min.js"></script>
+		<script src="../js/fastclick.js"></script>
+		<script>
+		  $(function() {
+		    FastClick.attach(document.body);
+		  });
+		</script>
+		<script src="../js/jquery-weui.min.js"></script>
+	</body>
+</html>
