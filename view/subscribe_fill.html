@@ -30,13 +30,13 @@
 				<div class="weui-cell">
 				    <div class="weui-cell__hd"><label class="weui-label">业务</label></div>
 				    <div class="weui-cell__bd">
-				      <input class="weui-input" placeholder="请选择业务"  id='buPicker'>
+				      <input class="weui-input" placeholder="请选择业务"  id='showPicker'>
 				    </div>
   				</div>
   				<div class="weui-cell">
 				    <div class="weui-cell__hd"><label class="weui-label">日期</label></div>
 				    <div class="weui-cell__bd">
-				      <input class="weui-input" placeholder="请选择日期"  id='dateTimePickte'>
+				      <input class="weui-input" placeholder="请选择日期"  id='showDatePicker'>
 				    </div>
   				</div>
   				<div class="weui-cell weui-cell_select weui-cell_select-after">
@@ -79,14 +79,28 @@
 		  });
 		</script>
 		<script src="../js/jquery-weui.min.js"></script>
-			<script src="../js/app.js"></script>
+		<script src="../js/app.js"></script>
+		<script src="../js/weui.min.js"></script>
 		<script src="../js/subscribe_fill.js"></script>
 		<script>
- 			$("#dateTimePickte").datetimePicker({
+ 			$("#showDatePicker1").datetimePicker({
  				title: "请选择时间",
  				min: util.formartDate(new Date(),"yyyy-MM-dd"),
  				timeFormat : "yyyy-mm-dd"
  			});
+ 			
+ 			$('#showDatePicker').on('click', function () {
+		        weui.datePicker({
+		            start: 1990,
+		            defaultValue: [new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate()],
+		            onChange: function (result) {
+		                console.log(result);
+		            },
+		            onConfirm: function (result) {
+		                console.log(result);
+		            }
+		        });
+		    });
 		</script>
 		</script>
 	</body>

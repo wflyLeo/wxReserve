@@ -5,3 +5,27 @@ html,body{
 .badge-number{
 	margin-left: 5px;width: 20px;background-color: #15B61D;
 }
+.page .weui-cells{
+	font-size: 15px;
+}
+.weui-btn{
+	font-size: 16px;
+}
+.weui-animate-fade-in{
+	visibility: visible!important;
+}
+.weui-animate-slide-up{
+	font-size: 14px;
+}
+.weui-picker__hd,.toolbar .title,.toolbar .picker-button{
+	font-size: 15px;
+}
+.weui-input{font-size: 14px;}
+.weui-picker-modal .picker-center-highlight{
+	height: 36px;
+}
+.weui-picker-modal .picker-item{
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+}
