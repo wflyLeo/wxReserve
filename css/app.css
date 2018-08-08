@@ -2,6 +2,9 @@ html,body{
   height: 100%;
   background: #FBFBFB;
 }
+.badge-text{
+	margin-left: 5px;background-color: #15B61D;padding:2px 10px;
+}
 .badge-number{
 	margin-left: 5px;width: 20px;background-color: #15B61D;
 }
@@ -28,4 +31,10 @@ html,body{
 	height: 36px;
 	line-height: 36px;
 	font-size: 14px;
+}
+.color-gray{
+	background: darkgray;
+}
+.color-red{
+	background-color: #ED4F52;
 }
