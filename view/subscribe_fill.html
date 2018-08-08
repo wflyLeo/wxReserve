@@ -30,27 +30,22 @@
 				<div class="weui-cell">
 				    <div class="weui-cell__hd"><label class="weui-label">业务</label></div>
 				    <div class="weui-cell__bd">
-				      <input class="weui-input" placeholder="请选择业务"  id='showPicker'>
+				      <input class="weui-input" placeholder="请选择业务"  id='showPicker' readonly="readonly">
 				    </div>
   				</div>
   				<div class="weui-cell">
 				    <div class="weui-cell__hd"><label class="weui-label">日期</label></div>
 				    <div class="weui-cell__bd">
-				      <input class="weui-input" placeholder="请选择日期"  id='showDatePicker'>
+				      <input class="weui-input" placeholder="请选择日期"  id='showDatePicker' readonly="readonly">
 				    </div>
   				</div>
-  				<div class="weui-cell weui-cell_select weui-cell_select-after">
-	                <div class="weui-cell__hd">
-	                    <label for="" class="weui-label">时间段</label>
-	                </div>
-	                <div class="weui-cell__bd">
-	                    <select class="weui-select" name="select2">
-	                        <option value="1">12:00-1:00</option>
-	                        <option value="2">12:00-1:00</option>
-	                        <option value="3">12:00-1:00</option>
-	                    </select>
-	                </div>
-	           </div>
+  				<div class="weui-cell">
+				    <div class="weui-cell__hd"><label class="weui-label">时间段</label></div>
+				    <div class="weui-cell__bd">
+				      <input class="weui-input" placeholder="请选择时间段"  id='dateBetween' readonly="readonly">
+				    </div>
+  				</div>
+  				
 	            <div class="weui-cell" >
 				    <div class="weui-cell__hd"><label class="weui-label">备注</label></div>
   				</div>
@@ -91,7 +86,8 @@
 		                console.log(result);
 		            },
 		            onConfirm: function (result) {
-		                console.log(result);
+		                var arr = result.splice(",");
+		                $("#showDatePicker").val(arr[0]+'-'+arr[1]+'-'+arr[2]);
 		            }
 		        });
 		    });

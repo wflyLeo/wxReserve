@@ -1,17 +1,5 @@
 $(function(){
-	
-	$("#buPicker").picker({
-	  title: "请选择业务",
-	  cols: [
-	    {
-	      textAlign: 'center',
-	      values: ['业务1', '业务2', '业务3', '业务4', '业务5']
-	    }
-	  ]
-	});
-
-	$('#showPicker').on('click', function () {
-        weui.picker([{
+	var yArr = [{
             label: '业务1',
             value: 0
         }, {
@@ -22,17 +10,38 @@ $(function(){
             value: 2
         },{
             label: '业务4',
-            disabled: true,
             value: 3
         }, {
             label: '其他',
             value: 4
-        }], {
+        }];
+    var dArr = [{
+            label: '9:00-10:00',
+            value: 0
+        }, {
+            label: '9:00-10:00',
+            value: 1
+        }, {
+             label: '9:00-10:00',
+             value: 2
+        }];
+	$('#showPicker').on('click', function () {
+        weui.picker(yArr, {
             onChange: function (result) {
                 console.log(result);
             },
             onConfirm: function (result) {
+                $("#showPicker").val(yArr[result].label);
+            }
+        });
+    });
+    $('#dateBetween').on('click', function () {
+        weui.picker(dArr, {
+            onChange: function (result) {
                 console.log(result);
+            },
+            onConfirm: function (result) {
+                $("#dateBetween").val(dArr[result].label);
             }
         });
     });
