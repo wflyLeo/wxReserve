@@ -19,10 +19,10 @@ $(function(){
             label: '9:00-10:00',
             value: 0
         }, {
-            label: '9:00-10:00',
+            label: '10:00-11:00',
             value: 1
         }, {
-             label: '9:00-10:00',
+             label: '11:00-12:00',
              value: 2
         }];
 	$('#showPicker').on('click', function () {
@@ -42,6 +42,19 @@ $(function(){
             },
             onConfirm: function (result) {
                 $("#dateBetween").val(dArr[result].label);
+            }
+        });
+    });
+    $('#showDatePicker').on('click', function () {
+        weui.datePicker({
+            start: "1990",
+            defaultValue: [new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate()],
+            onChange: function (result) {
+                console.log(result);
+            },
+            onConfirm: function (result) {
+                var arr = result.splice(",");
+                $("#showDatePicker").val(arr[0]+'-'+arr[1]+'-'+arr[2]);
             }
         });
     });
