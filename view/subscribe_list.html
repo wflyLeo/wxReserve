@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
 		<script src="../js/jquery-2.1.4.min.js"></script>
 		<script src="../js/jquery-weui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<style>
 			.weui-cells__title{
 				padding: 5px 10px;
@@ -22,26 +23,13 @@
 	<body>
 		<div class="page">
 			<div class="weui-cells__title">预约列表</div>
-			<div class="weui-cells">
-			  <a class="weui-cell weui-cell_access" href="javascript:;">
-			    <div class="weui-cell__bd">
-			      <p>预约业务一</p>
-			    </div>
-			    <div class="weui-cell__ft"> 
-			    	<span class="weui-badge badge-text" >已预约</span>
-			    </div>
-			  </a>
-			  <a class="weui-cell weui-cell_access" href="javascript:;">
-			    <div class="weui-cell__bd">
-			      <p>预约业务二</p>
-			    </div>
-			     <div class="weui-cell__ft"> 
-			    	<span class="weui-badge badge-text color-gray" >已取消</span>
-			    </div>
-			  </a>
+			<div class="weui-cells" id="subList"></div>
+			<div class="noting-view ">
+				<img src="../image/noting.png"/>
+				<div class="text">暂无数据@^@</div>
 			</div>
 		</div>
 		
-		
+		<script src="../js/view/subscribe_list.js"></script>
 	</body>
 </html>

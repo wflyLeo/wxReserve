@@ -38,3 +38,16 @@ html,body{
 .color-red{
 	background-color: #ED4F52;
 }
+.hiden{
+	display: none;
+}
+.show{
+	display:block
+}
+.noting-view{/*无数据时显示*/
+	width: 80%;margin: 60px auto;text-align: center;
+}
+.noting-view img{width: 40%;}
+.noting-view .text{color: darkgray;}
+.top-banner{width: 100%;margin-top: 20px;background-color: white;}
+.top-banner img{margin-left:10px;width: 50px;}

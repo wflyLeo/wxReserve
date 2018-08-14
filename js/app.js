@@ -1,5 +1,18 @@
 var globalData = {
-	postUrl:"11"
+	postUrl:"http://20z2641l41.iok.la:39271/wxReserve/"
+}
+var apiUrl = {
+	userGetOpenId:"user/getOpenId", //获取用户OpenId接口  get
+	userBindInfo:"user/bindInfo", //用户绑定接口 post
+	userGetInfoByOpenId:"user/getInfoByOpenId", //获取用户信息接口 post
+	branchGetBranchList:"branch/getBranchList", //获取机构列表接口 get
+	branchGetBusinessInfo:"branch/getBusinessInfo", //根据机构号获取可预约的业务列表 post
+	branchGetAppintDateInfo:"branch/getAppintDateInfo", //获取可预约的日期列表接口 get
+	branchGetAppintTimePeriodInfo:"branch/getAppintTimePeriodInfo", //  获取可以预约的时间段和剩余可预约人数列表 post
+	appointSaveAppointInfo:"appoint/saveAppointInfo", //提交预约接口 post
+	appointGetList:"appoint/getList", //获取预约记录接口 post
+	appointGetDetail:"appoint/getDetail", //获取预约详细接口 post
+	appointCancel:"appoint/cancel", //取消预约接口 post
 }
 var clogin = {
 	
@@ -21,10 +34,10 @@ var util = {
             	if(pBack){
             		callback(data);
             	}else{
-            		if(data.code == 1){
+            		if(data.code == 200){
             			callback(data.data); //响应成功  直接拿data
             		}else{//code  = 100  登录失效请重新登录
-            			mui.toast(data.message); //响应失败  弹出错误信息
+            			$.toast(data.message, "text");
             		}
             	}
             },
@@ -40,9 +53,9 @@ var util = {
             }
         })
     },
-    Get: function (url, data, callback,pBack,ecallback) {this.ajax(globalData.postUrl, 'GET', 'json',true, data, callback,pBack,ecallback)},
-	Post: function (methodT,data, callback,pBack,ecallback) {this.ajax(globalData.postUrl, 'POST', 'json',true, data, callback,pBack,ecallback)},
-	PostAsynF: function (methodT,data, callback,pBack,ecallback) {this.ajax(globalData.postUrl, 'POST', 'json',false, data, callback,pBack,ecallback)},
+    Get: function (methodT, data, callback,pBack,ecallback) {this.ajax(globalData.postUrl+methodT, 'GET', 'json',true, data, callback,pBack,ecallback)},
+	Post: function (methodT,data, callback,pBack,ecallback) {this.ajax(globalData.postUrl+methodT, 'POST', 'json',true, data, callback,pBack,ecallback)},
+	PostAsynF: function (methodT,data, callback,pBack,ecallback) {this.ajax(globalData.postUrl+methodT, 'POST', 'json',false, data, callback,pBack,ecallback)},
 	formartDate: function(date, formatStr){ 
 	 	var str = formatStr;
 		str = str.replace(/yyyy|YYYY/, date.getFullYear());
@@ -71,5 +84,28 @@ var util = {
 	getUrlParamZw: function (param) {var t = new RegExp("(^|&)" + param + "=([^&]*)(&|$)"), n = window.location.search.substr(1).match(t);return null != n ? decodeURIComponent(n[2]) : "";},
 	validateMobile: function(mobile){if(mobile==''){return false;}var p1 = /^1[0-9]{10}$/;  return p1.test(mobile);},
 	isCardNo:function(card){if(card ==""){return false;} var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; return pattern.test(card);},
-	isNoLogin:function(){if(localStorage.getItem(storageKey.openId)){return true;}else{return false;}}
+	isNoLogin:function(){if(localStorage.getItem(storageKey.openId)){return true;}else{return false;}},
+	subscribeStatsText:function(key){
+		switch(key){
+			case 0: return "已预约";break;
+			case 1: return "已取号";break;
+			case 2: return "叫号";break;
+			case -1: return "已取消";break;
+			default: return  "未知";break;
+		}
+	},
+	btnDisableT: function (obj,t,isWait){ /*设置t秒内不能重复点击，obj为当前对象*/
+		var ot = t || 3000;
+		if(isWait){
+			var v = obj.value;
+		   	var i = setInterval(function(){
+		        if(ot > 0) {obj.value = ot--+'秒';obj.disabled = true;} else {window.clearInterval(i);obj.value = v;obj.disabled = false; }
+		    }, 1000);
+		}else{
+			obj.disabled = true;
+		 	var i = setInterval(function(){
+		        if(ot > 0) { ot--;} else {window.clearInterval(i);obj.disabled = false;}
+		    }, 1000);
+		}
+	},
 }

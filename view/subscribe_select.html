@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
 		<script src="../js/jquery-2.1.4.min.js"></script>
 		<script src="../js/jquery-weui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<style>
 			.weui-cells__title{
 				padding: 5px 10px;
@@ -21,30 +22,19 @@
 	</head>
 	<body>
 		<div class="page">
-			<div class="weui-cells__title">地址选择</div>
-			<div class="weui-cells">
-			  <a class="weui-cell weui-cell_access" href="javascript:;">
-			    <div class="weui-cell__bd">
-			      <p>江北人社局</p>
-			    </div>
-			    <div class="weui-cell__ft"> 
-			    </div>
-			  </a>
-			  <a class="weui-cell weui-cell_access" href="javascript:;">
-			    <div class="weui-cell__bd">
-			      <p>江南人社局</p>
-			    </div>
-			    <div class="weui-cell__ft">江南人才多
-			    </div>
-			  </a>
+			<div class="top-banner"><img src="../image/topbav.jpg"></div>
+			<div class="weui-cells__title">网点机构选择</div>
+			<div class="weui-cells" id="brankList"></div>
+			<div class="noting-view ">
+				<img src="../image/noting.png"/>
+				<div class="text">暂无数据@^@</div>
 			</div>
 		</div>
-		<div class="weui-msg__opr-area" style="margin-top: 20px;">
+		<div class="weui-msg__opr-area hiden" style="margin-top: 20px;" id="subscribeToDay">
 		    <p class="weui-btn-area">
-		      <a href="javascript:;" class="weui-btn weui-btn_primary">查看预约信息（今天	）</a>
+		      <a href="javascript:;" class="weui-btn weui-btn_primary" id="primaryBtn">查看预约信息（今天	）</a>
 		    </p>
-		  </div>
-		
-		
+		 </div>
+		<script src="../js/view/subscribe_select.js"></script>
 	</body>
 </html>

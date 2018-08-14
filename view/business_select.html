@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
 		<script src="../js/jquery-2.1.4.min.js"></script>
 		<script src="../js/jquery-weui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<style>
 			.weui-cells__title{
 				padding: 5px 10px;
@@ -21,24 +22,13 @@
 	</head>
 	<body>
 		<div class="page">
-			<div class="weui-cells__title">业务选择</div>
-			<div class="weui-cells">
-			  <a class="weui-cell weui-cell_access" href="javascript:;">
-			    <div class="weui-cell__bd">
-			      <p>预约业务一</p>
-			    </div>
-			    <div class="weui-cell__ft"> 该业务热门
-			    </div>
-			  </a>
-			  <a class="weui-cell weui-cell_access" href="javascript:;">
-			    <div class="weui-cell__bd">
-			      <p>预约业务二</p>
-			    </div>
-			    <div class="weui-cell__ft">
-			    </div>
-			  </a>
+			<div class="weui-cells__title">业务列表</div>
+			<div class="weui-cells" id="businessList"></div>
+			<div class="noting-view">
+				<img src="../image/noting.png"/>
+				<div class="text">暂无数据@^@</div>
 			</div>
 		</div>
-		
+		<script src="../js/view/business_select.js"></script>
 	</body>
 </html>
