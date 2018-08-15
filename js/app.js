@@ -13,8 +13,11 @@ var apiUrl = {
 	appointGetList:"appoint/getList", //获取预约记录接口 post
 	appointGetDetail:"appoint/getDetail", //获取预约详细接口 post
 	appointCancel:"appoint/cancel", //取消预约接口 post
+	appointConfirmAppointInfo:"appoint/confirmAppointInfo",
+	getAppointCount:"appoint/getAppointCount"
 }
 var clogin = {
+	
 	
 }
 var storageKey = {
@@ -69,6 +72,14 @@ var util = {
 	isIos: function () {return !!this.ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)==true?true:false;}, //ios
     isAndroid: function () { return this.ua.match(/Android/i)},//安卓
     isWeixin: function () {return this.ua.match(/MicroMessenger/i);},//微信
+    isEmpty: function (obj) {
+        if (!obj) { return true}
+        if (this.isArray(obj) && obj.length === 0) {return true}
+        if (this.isString(obj)&&obj == "undefined") {return true}
+        if (this.isObject(obj) && Object.keys(obj).length === 0) { return true}
+        return false
+    },
+    isString: function (arr) {return this.isType(arr, 'String')},
     isType: function (obj, type) { return Object.prototype.toString.call(obj) === '[object ' + type + ']'},
     isArray: function (arr) {return this.isType(arr, 'Array')},
     isObject: function (obj) {return this.isType(obj, 'Object')},
@@ -90,8 +101,19 @@ var util = {
 			case 0: return "已预约";break;
 			case 1: return "已取号";break;
 			case 2: return "叫号";break;
+			case 3: return "已完成";break;
 			case -1: return "已取消";break;
 			default: return  "未知";break;
+		}
+	},
+	subscribeStatsColor:function(key){
+		switch(key){
+			case 0: return "";break;
+			case 1: return "quhao-bcolor";break;
+			case 2: return "jiaohao-bcolor";break;
+			case 3: return "wancen-bcolor";break;
+			case -1: return "color-gray";break;
+			default: return  "weizhi-bcolor";break;
 		}
 	},
 	btnDisableT: function (obj,t,isWait){ /*设置t秒内不能重复点击，obj为当前对象*/
@@ -108,4 +130,15 @@ var util = {
 		    }, 1000);
 		}
 	},
+	init:function(){
+		$.toast.prototype.defaults.duration = 1300;
+		if(!util.isEmpty(util.getUrlParam("wxReserveOpenId"))){ //获取openid
+			localStorage.setItem(storageKey.openId,util.getUrlParam("wxReserveOpenId"));
+		}
+	}
 }
+
+$(function(){
+	util.init();
+	localStorage.setItem(storageKey.openId,"1234");
+})

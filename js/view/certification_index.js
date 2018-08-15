@@ -2,10 +2,10 @@
 $(function(){
 	
 	$('#primaryBtn').on('click', function () {
-     	util.Post("");
+     	location.href = "https://app.nbhrss.gov.cn/app/weixin/rzxt/rzxtReg.jsp";
     });
     $('#defaultBtn').on('click', function () {
-       location.href = "information_bound.html";
+       		location.href = "information_bound.html";
     });
     
 })

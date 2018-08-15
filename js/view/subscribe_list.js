@@ -1,10 +1,15 @@
 var subP = {
-	subList:function(todayFlag){
+	subList:function(){
+		var todayFlag = util.getUrlParam("todaySub")?0:1;
 		var brankDiv = $("#subList");
 		util.Post(apiUrl.appointGetList,{
-				openid:"1234",todayFlag:todayFlag
+				openid:localStorage.getItem(storageKey.openId),
+				todayFlag:todayFlag
 			},function(res){
-			if(res.length == 0){$(".noting-view").show();$("#primaryBtn").hide();}else{$("#subscribeToDay").show();$(".noting-view").hide();}
+			if(res.length == 0){
+				if(todayFlag==1){$(".noText").text("今天您还没有任何预约信息哦@^@");}
+				$(".noting-view").show();$("#primaryBtn").hide();}else{$("#subscribeToDay").show();$(".noting-view").hide();
+			}
 			for(var i=0;i < res.length;i++){
 				brankDiv.append(subP.innerHtml(res[i]));
 			}
@@ -17,12 +22,14 @@ var subP = {
 			   +'&queueNo='+child.queueNo
 			   +'&appointDate='+child.appointDate
 			   +'&idCard='+child.idCard
+			   +'&businessType='+child.businessType
 			   +'">'
 			   +'<div class="weui-cell__bd">'
 			   +'<p>'+child.businessName+'</p>'
 			   +'</div>'   
 			   +'<div class="weui-cell__ft">'
-			   +'<span class="weui-badge badge-text'+(child.status==-1?' color-gray':' ')+'" >'+util.subscribeStatsText(child.status)+'</span>'
+			   +'<span class="weui-badge badge-text '+ util.subscribeStatsColor(child.status)
+			   +'" >'+util.subscribeStatsText(child.status)+'</span>'
 			   +'</div>'
 			   +' </a>';
 		return ht;
@@ -30,6 +37,9 @@ var subP = {
 }
 
 $(function(){
-	subP.subList(0);
+	subP.subList();
+	$("#primaryBtn").click(function(){
+		location.href = "subscribe_select.html";
+	})
 	
 })

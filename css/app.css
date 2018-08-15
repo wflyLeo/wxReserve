@@ -51,3 +51,21 @@ html,body{
 .noting-view .text{color: darkgray;}
 .top-banner{width: 100%;margin-top: 20px;background-color: white;}
 .top-banner img{margin-left:10px;width: 50px;}
+#primaryBtn,.phoneClick{/*//苹果机点击*/
+	cursor:pointer
+}
+.gray{
+	color: darkgray;
+}
+.quhao-bcolor{
+	background-color:#15b0b6;
+}
+.jiaohao-bcolor{
+	background-color:#409be6;
+}
+.wancen-bcolor{
+	background-color:#e64040bd;
+}
+.weizhi-bcolor{
+	background-color:#e64040;
+}

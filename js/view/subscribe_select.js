@@ -13,6 +13,7 @@ var subscibeP = {
 		var ht ='<a class="weui-cell weui-cell_access" href="business_select.html?branchNo='+child.branchNo+'">'
 			   +'<div class="weui-cell__bd">'
 			   +'<p>'+child.branchName+'</p>'
+			   +'<p class="gray" >'+child.branchAddr+'</p>'
 			   +'</div>'   
 			   +'<div class="weui-cell__ft"></div>'
 			   +' </a>';
@@ -22,5 +23,7 @@ var subscibeP = {
 
 $(function(){
 	subscibeP.branchList();
-	
+	$("#primaryBtn").click('click',function(){
+		location.href = "subscribe_list.html?todaySub=true"
+	})
 })

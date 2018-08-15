@@ -11,6 +11,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/app.css"/>
 		<script src="../js/jquery-2.1.4.min.js"></script>
 		<script src="../js/jquery-weui.min.js"></script>
+		<script src="../js/app.js"></script>
 		<style>
 			.weui-cells__title{
 				padding: 5px 20px;
@@ -32,27 +33,43 @@
 				<div class="weui-form-preview__bd">
 				    <div class="weui-form-preview__item">
 				      <label class="weui-form-preview__label">联系人</label>
-				      <span class="weui-form-preview__value" id="name">肖大宝</span>
+				      <span class="weui-form-preview__value" id="name"></span>
 				    </div>
 				    <div class="weui-form-preview__item">
 				      <label class="weui-form-preview__label">身份证</label>
-				      <span class="weui-form-preview__value" id="idCard">10082177127277</span>
+				      <span class="weui-form-preview__value" id="idCard"></span>
 				    </div>
 				    <div class="weui-form-preview__item">
 				      <label class="weui-form-preview__label">手机号</label>
-				      <span class="weui-form-preview__value" id="mobile">137137912739</span>
+				      <span class="weui-form-preview__value" id="mobile"></span>
 				    </div>
 				    <div class="weui-form-preview__item">
 				      <label class="weui-form-preview__label">服务厅</label>
-				      <span class="weui-form-preview__value" id="brank">江北人名句</span>
+				      <span class="weui-form-preview__value" id="brank"></span>
 				    </div>
 				    <div class="weui-form-preview__item">
 				      <label class="weui-form-preview__label">业务</label>
-				      <span class="weui-form-preview__value" id="business"> 业务1</span>
+				      <span class="weui-form-preview__value" id="business"> </span>
 				    </div>
 				     <div class="weui-form-preview__item">
 				      <label class="weui-form-preview__label">日期</label>
-				      <span class="weui-form-preview__value" id="dataTime">2018-12-12</span>
+				      <span class="weui-form-preview__value" id="dataTime"></span>
+				    </div>
+				    <div class="weui-form-preview__item">
+				      <label class="weui-form-preview__label">时间段</label>
+				      <span class="weui-form-preview__value" id="dataTimeBt"></span>
+				    </div>
+				    <div class="weui-form-preview__item hiden" id="waitingCountP">
+				      <label class="weui-form-preview__label">等待人数</label>
+				      <span class="weui-form-preview__value " id="waitingCount"></span>
+				    </div>
+				    <div class="weui-form-preview__item hiden" id="waitingTimeP">
+				      <label class="weui-form-preview__label">预计等待时间</label>
+				      <span class="weui-form-preview__value" id="waitingTime"></span>
+				    </div>
+				    <div class="weui-form-preview__item">
+				      <label class="weui-form-preview__label">状态</label>
+				      <span class="weui-form-preview__value" id="status"></span>
 				    </div>
 				</div>
 			</div>
@@ -62,6 +79,6 @@
 			    </p>
 			  </div>
 		</div>
-		<script src="../js/view/subscribe_detail.js"></script>
+		<script src="../js/view/subscribe_detail.js?v=1.04"></script>
 	</body>
 </html>

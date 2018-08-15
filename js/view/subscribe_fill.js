@@ -67,36 +67,66 @@ var fillP = {
 	},
 	getUserInfo:function(){
 		util.Post(apiUrl.userGetInfoByOpenId,{openid:localStorage.getItem(storageKey.openId)},function(res){
-			fillP.IdCard = res.IdCard;
-			fillP.IdName = res.IdName;
+			fillP.IdCard = res.idCard;
+			fillP.IdName = res.idName;
 			fillP.phone = res.phone;
+			fillP.getAppointCount(res.idCard);
 		});
 	},
-	submitSubscribe:function(obj){
+	submitSubscribe:function(){
 		if(fillP.appointDate==""){$.toast("请选择预约日期", "text");return;}
 		if(fillP.startTime==""||fillP.endTime==''){$.toast("请选择预约时间段", "text");return;}
-		console.log(fillP.appointDate);
 		util.Post(apiUrl.appointSaveAppointInfo,{
+			branchNo:fillP.branchNo,
+			queueNo:fillP.queueNo,
+			businessType:fillP.businessType,
+			appointDate:fillP.appointDate.replace(/\-/g,""),
+			startTime:fillP.startTime,
+			endTime:fillP.endTime,
+			idCard: fillP.IdCard,
+			idName: fillP.IdName,
+			phone: fillP.phone
+		},function(res){
+			$.toast("预约成功",function(){
+				location.href = "subscribe_list.html";
+			});
+		});
+	},
+	confirmAppointInfo:function(){
+		util.Post(apiUrl.appointConfirmAppointInfo,{
 			branchNo:fillP.branchNo,
 			queueNo:fillP.queueNo,
 			businessType:fillP.businessType,
 			appointDate:fillP.appointDate,
 			startTime:fillP.startTime,
 			endTime:fillP.endTime,
-			idCard: fillP.IdCard?fillP.IdCard:"124234",
-			idName: fillP.IdName?fillP.IdCard:"124234",
-			phone: fillP.phone?fillP.IdCard:"124234"
+			idCard: fillP.IdCard,
+			idName: fillP.IdName,
+			phone: fillP.phone
 		},function(res){
-			$.toast("预约成功",function(){
-				location.href = "subscribe_list.html";
-			});
-		});
+			if(res.code == '200'){
+				fillP.submitSubscribe();
+			}else if(res.code == '500'){
+				 $.confirm("您今天已有预约，是否选择覆盖", function() {
+				 	 fillP.submitSubscribe();
+				  }, function() {
+				 	 //点击取消后的回调函数
+				  });
+			}
+		},true)
+	},
+	getAppointCount:function(idCard){
+		util.Post(apiUrl.getAppointCount,{
+			idCard: idCard
+		},function(res){
+			$("#subNumber").text(res);
+		})
 	}
 }
 $(function(){
 	fillP.getAppintDateInfo();
 	fillP.businessList();
-	//fillP.getUserInfo();
+	fillP.getUserInfo();
 	$("#showPicker").val(util.getUrlParamZw("businessName"));
 	$('#showPicker').on('click', function () {
         weui.picker(fillP.businessArr, {
@@ -106,6 +136,7 @@ $(function(){
                  fillP.queueNo = result[0].queueNo;
                  $("#showPicker").val(result[0].businessName);
                  $("#dateBetween").val("");//清空子选折器的值
+                 fillP.appintTimePeriodInfo();//重新查询值
             }
         });
     });
@@ -139,7 +170,6 @@ $(function(){
   		if($("#showDatePicker").val().trim()==''){$.toast("请选择预约日期", "text");return;}
   		if($("#dateBetween").val().trim()==''){$.toast("请选择预约时间段", "text");return;}
   		util.btnDisableT(this,1)
-  		fillP.submitSubscribe(this);
-       
+  		fillP.confirmAppointInfo();
     });
 })
