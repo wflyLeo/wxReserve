@@ -10,13 +10,15 @@ $(function(){
 		if(password.trim()==''){$.toast("请输入密码","text");return;}
 		util.Post(apiUrl.userBindInfo,{
 			openid:localStorage.getItem(storageKey.openId),
-			login_name:socialCard,
+			login_name:'1234',
 			phone:phone,
-			password:password
+			password:'5678'
 		},function(res){
-			location.href = "subscribe_select.html"
+			$.toast('绑定成功',function(){
+				location.href = "subscribe_select.html";
+			})
 		})
-		location.href = "subscribe_select.html"
+		//location.href = "subscribe_select.html"
 	})
 	
 })

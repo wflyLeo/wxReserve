@@ -95,7 +95,7 @@ var util = {
 	getUrlParamZw: function (param) {var t = new RegExp("(^|&)" + param + "=([^&]*)(&|$)"), n = window.location.search.substr(1).match(t);return null != n ? decodeURIComponent(n[2]) : "";},
 	validateMobile: function(mobile){if(mobile==''){return false;}var p1 = /^1[0-9]{10}$/;  return p1.test(mobile);},
 	isCardNo:function(card){if(card ==""){return false;} var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; return pattern.test(card);},
-	isNoLogin:function(){if(localStorage.getItem(storageKey.openId)){return true;}else{return false;}},
+	isNoLogin:function(){if(!localStorage.getItem(storageKey.openId)){return true;}else{return false;}},
 	subscribeStatsText:function(key){
 		switch(key){
 			case 0: return "已预约";break;
@@ -135,6 +135,7 @@ var util = {
 		if(!util.isEmpty(util.getUrlParam("wxReserveOpenId"))){ //获取openid
 			localStorage.setItem(storageKey.openId,util.getUrlParam("wxReserveOpenId"));
 		}
+		if(util.isNoLogin()){$.toast('登录已失效，请重新重入口进入','text');}
 	}
 }
 

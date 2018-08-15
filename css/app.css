@@ -49,8 +49,10 @@ html,body{
 }
 .noting-view img{width: 40%;}
 .noting-view .text{color: darkgray;}
-.top-banner{width: 100%;margin-top: 20px;background-color: white;}
-.top-banner img{margin-left:10px;width: 50px;}
+/*.top-banner{width: 100%;margin-top: 20px;background-color: white;}
+.top-banner img{margin-left:10px;width: 50px;}*/
+.top-banner{position:relative;width: 100%;margin-top: 20px;background-color: white;text-align: center;}
+.top-banner img{height: 100px;width: 99%;}
 #primaryBtn,.phoneClick{/*//苹果机点击*/
 	cursor:pointer
 }
