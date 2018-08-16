@@ -5,14 +5,15 @@ var subP = {
 		util.Post(apiUrl.appointGetList,{
 				openid:localStorage.getItem(storageKey.openId),
 				todayFlag:todayFlag
-			},function(res){
+		},function(res){
 			if(res.length == 0){
 				if(todayFlag==1){$(".noText").text("今天您还没有任何预约信息哦@^@");}
 				$(".noting-view").show();$("#primaryBtn").hide();}else{$("#subscribeToDay").show();$(".noting-view").hide();
 			}
-			for(var i=0;i < res.length;i++){
+			for(var i=0;i < res.length;i++){	
 				brankDiv.append(subP.innerHtml(res[i]));
 			}
+			$("#primaryBtnP").show();
 		});
 		
 	},
@@ -26,6 +27,7 @@ var subP = {
 			   +'">'
 			   +'<div class="weui-cell__bd">'
 			   +'<p>'+child.businessName+'</p>'
+			   +'<p class="gray">'+util.strToDate(child.appointDate)+'   '+child.startTime+'-'+child.endTime+'</p>'
 			   +'</div>'   
 			   +'<div class="weui-cell__ft">'
 			   +'<span class="weui-badge badge-text '+ util.subscribeStatsColor(child.status)

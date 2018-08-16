@@ -16,7 +16,7 @@ var detailP = {
 			$("#mobile").text(res.phone);
 			$("#brank").text(res.branchName);
 			$("#business").text(res.busienssName);
-			$("#dataTime").text(res.appointDate);
+			$("#dataTime").text(util.strToDate(res.appointDate));
 			$("#dataTimeBt").text(res.startTime+"-"+res.endTime);
 			$("#status").text(util.subscribeStatsText(res.status));
 			if(res.status==0){
