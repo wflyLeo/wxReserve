@@ -8,7 +8,7 @@ var subP = {
 		},function(res){
 			if(res.length == 0){
 				if(todayFlag==1){$(".noText").text("今天您还没有任何预约信息哦@^@");}
-				$(".noting-view").show();$("#primaryBtn").hide();}else{$("#subscribeToDay").show();$(".noting-view").hide();
+				$(".noting-view").show();}else{$("#subscribeToDay").show();$(".noting-view").hide();
 			}
 			for(var i=0;i < res.length;i++){	
 				brankDiv.append(subP.innerHtml(res[i]));
