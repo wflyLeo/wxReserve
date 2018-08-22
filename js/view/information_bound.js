@@ -8,6 +8,7 @@ $(function(){
 		if(socialCard.trim()==''){$.toast("请输入社保号码","text");return;}
 		if(!util.validateMobile(phone)){$.toast("请输入有效手机号","text");return;}
 		if(password.trim()==''){$.toast("请输入密码","text");return;}
+		util.btnDisableT(this,1);
 		util.Post(apiUrl.userBindInfo,{
 			openid:localStorage.getItem(storageKey.openId),
 			login_name:socialCard,
