@@ -1,14 +1,16 @@
 var subP = {
-	subList:function(){
-		var todayFlag = util.getUrlParam("todaySub")?0:1;
+	subList:function(todayFlag){
 		var brankDiv = $("#subList");
 		util.Post(apiUrl.appointGetList,{
 				openid:localStorage.getItem(storageKey.openId),
 				todayFlag:todayFlag
 		},function(res){
 			if(res.length == 0){
-				if(todayFlag==1){$(".noText").text("今天您还没有任何预约信息哦@^@");}
-				$(".noting-view").show();}else{$("#subscribeToDay").show();$(".noting-view").hide();
+				if(todayFlag==0){$(".text").html("今天您还没有任何预约信息哦@^@</br><a class='a-color reloadAll'>点击查看全部预约<a/>");}else{$(".text").html("您还没有任何预约信息哦@^@");}
+				$(".noting-view").show();$("#defaultBtn").hide();
+			}else{
+				$("#subscribeToDay").show();$(".noting-view").hide();
+				if(todayFlag==0){$("#defaultBtn").show();}else{$("#defaultBtn").hide();}
 			}
 			for(var i=0;i < res.length;i++){	
 				brankDiv.append(subP.innerHtml(res[i]));
@@ -39,9 +41,12 @@ var subP = {
 }
 
 $(function(){
-	subP.subList();
+	subP.subList(util.getUrlParam("todaySub")?0:1);
 	$("#primaryBtn").click(function(){
 		location.href = "subscribe_select.html";
+	})
+	$(document).on('click','.reloadAll',function(){
+		subP.subList(1);
 	})
 	
 })
