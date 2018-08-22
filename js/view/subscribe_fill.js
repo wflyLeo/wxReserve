@@ -97,7 +97,7 @@ var fillP = {
 			branchNo:fillP.branchNo,
 			queueNo:fillP.queueNo,
 			businessType:fillP.businessType,
-			appointDate:fillP.appointDate,
+			appointDate:fillP.appointDate.replace(/\-/g,""),
 			startTime:fillP.startTime,
 			endTime:fillP.endTime,
 			idCard: fillP.IdCard,
