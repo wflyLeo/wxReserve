@@ -1,6 +1,6 @@
 var subP = {
 	subList:function(todayFlag){
-		var brankDiv = $("#subList");
+		var brankDiv = $("#subList");brankDiv.html("");
 		util.Post(apiUrl.appointGetList,{
 				openid:localStorage.getItem(storageKey.openId),
 				todayFlag:todayFlag
