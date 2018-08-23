@@ -49,6 +49,8 @@ var detailP = {
 $(function(){
 	detailP.subscribeDetail();
 	$("#cancelBtn").click(function(){
-		detailP.cancelSubscribe();
+		$.confirm("是否确认取消预约", function() {
+		  detailP.cancelSubscribe();
+		}, function(){});
 	})
 })
