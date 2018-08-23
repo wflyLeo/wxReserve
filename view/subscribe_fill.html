@@ -15,7 +15,11 @@
 		<script src="../js/weui.min.js"></script>
 		<script src="../js/app.js"></script>
 		<style>
-
+		.weui-select {
+		    height: 20px; 
+		    line-height: 20px; 
+		    padding-left: 0px;
+		}
 		</style>
 	</head>
 
@@ -36,40 +40,27 @@
 				<div class="weui-cell">
 					<div class="weui-cell__hd"><label class="weui-label">业务</label></div>
 					<div class="weui-cell__bd">
-						<input class="weui-input" placeholder="请选择业务" id='showPicker' readonly="readonly">
+						<select class="weui-select" id="showPicker">
+							<option value="-1">请选择预约业务</option>
+			         	 </select>
 					</div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__hd"><label class="weui-label">日期</label></div>
 					<div class="weui-cell__bd">
-						<input class="weui-input" placeholder="请选择日期" id='showDatePicker' readonly="readonly">
+						<select class="weui-select" id="showDatePicker">
+							<option value="-1">请选择预约日期</option>
+			            </select>
 					</div>
 				</div>
 				<div class="weui-cell">
 					<div class="weui-cell__hd"><label class="weui-label">时间段</label></div>
 					<div class="weui-cell__bd">
-						<input class="weui-input" placeholder="请选择时间段" id='dateBetween' readonly="readonly">
+						<select class="weui-select" id='dateBetween'>
+							<option value="-1">请选择预约时间段</option>
+			           </select>
 					</div>
 				</div>
-
-				<!-- <div class="weui-cell" >
-				    <div class="weui-cell__hd"><label class="weui-label">备注</label></div>
-  				</div>
-				<div class="weui-cells weui-cells_form" style="margin-top: 0px;">
-				  <div class="weui-cell">
-				    <div class="weui-cell__bd">
-				      <textarea class="weui-textarea" placeholder="请输入文本" rows="1"></textarea>
-				      <div class="weui-textarea-counter"><span>0</span>/100</div>
-				    </div>
-				  </div>
-				</div>-->
-			</div>
-			<!--<label for="weuiAgree" class="weui-agree">
-            <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox" checked="">
-	            <span class="weui-agree__text">
-	                阅读并同意<a href="javascript:void(0);">《预约服务条款》和《业务指南》</a>
-	            </span>
-	        </label>-->
 		</div>
 		<div class="weui-msg__opr-area">
 			<p class="weui-btn-area">

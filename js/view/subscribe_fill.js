@@ -9,61 +9,35 @@ var fillP = {
 	endTime:"",
 	appointDate:"",
 	dateBtArr:[],
-	yArr:[],
 	dateArr:[],
 	businessArr:[],
 	appintTimePeriodInfo :function(){
-		 console.log("请求参数：branchNo="+fillP.branchNo+"，queueNo="+fillP.queueNo+"，businessType="+fillP.businessType+"，appointDate="+fillP.appointDate);
+		if(fillP.appointDate==""){return;}
 		 util.Post(apiUrl.branchGetAppintTimePeriodInfo,{
 		 	branchNo:fillP.branchNo,
 		 	queueNo:fillP.queueNo,
 		 	businessType:fillP.businessType,
 		 	appointDate: fillP.appointDate.replace(/\-/g,"")
 		 },function(res){
-		 	 console.log(JSON.stringify(res));
-			var bArr = [];
 			var data = res.timePeriodInfo;
+			fillP.dateBtArr = data;
 			if(data.length==0){$.toast("预约时间端为空，请联系管理员", "text");return;}
-			for(var i=0;i<data.length;i++){
-				var tem = {
-					label:data[i].startTime+"-"+data[i].endTime+"（可预约数"+data[i].remainder+"）",
-					value:data[i]
-				}
-				bArr.push(tem);
-			}
-			fillP.dateBtArr = bArr;
+			fillP.dataBtInnerHtml(data);
 		});
 	},
 	getAppintDateInfo:function(){
 		util.Get(apiUrl.branchGetAppintDateInfo,{},function(res){
-			var bArr = [];
-			for(var i=0;i<res.length;i++){
-				var tem = {
-					label:res[i],
-					value:res[i]
-				}
-				bArr.push(tem);
-			}
-			fillP.dateArr = bArr;
-			fillP.appointDate = res[0];
-			fillP.appintTimePeriodInfo();
+			fillP.dataInnerHtml(res);
 		})
 	},
 	businessList:function(){
 		util.Post(apiUrl.branchGetBusinessInfo,{
 			branchNo: fillP.branchNo
 		},function(res){
-			var bArr = [];
-			for(var i=0;i<res.length;i++){
-				var tem = {
-					label:res[i].businessInfo.businessName,
-					value:res[i].businessInfo
-				}
-				bArr.push(tem);
-			}
-			fillP.businessArr = bArr;
+			 console.log(JSON.stringify(res));
+			fillP.businessArr = res;
+			fillP.showPickerInnerHtml(res);
 		});
-		
 	},
 	getUserInfo:function(){
 		util.Post(apiUrl.userGetInfoByOpenId,{openid:localStorage.getItem(storageKey.openId)},function(res){
@@ -107,7 +81,7 @@ var fillP = {
 			if(res.code == '200'){
 				fillP.submitSubscribe();
 			}else if(res.code == '500'){
-				 $.confirm("您今天已有预约，是否选择覆盖", function() {
+				 $.confirm("您该天已有预约，是否选择覆盖", function() {
 				 	 fillP.submitSubscribe();
 				  }, function() {
 				 	 //点击取消后的回调函数
@@ -121,54 +95,72 @@ var fillP = {
 		},function(res){
 			$("#subNumber").text(res);
 		})
+	},
+	showPickerInnerHtml:function(list){
+		var showD = $("#showPicker");showD.html('');
+		for(var i =0 ;i<list.length;i++){
+			if(fillP.businessType==list[i].businessInfo.businessType){
+				showD.append('<option value="'+i+'"selected = "selected">'+list[i].businessInfo.businessName+'</option>');
+			}else{
+				showD.append('<option value="'+i+'">'+list[i].businessInfo.businessName+'</option>');
+			}
+		}
+	},
+	dataInnerHtml:function(list){
+		var showD = $("#showDatePicker");showD.html('<option value="-1">请选择预约日期</option>');
+		for(var i =0 ;i<list.length;i++){
+			showD.append('<option value="'+list[i]+'">'+list[i]+'</option>');
+		}
+	},
+	dataBtInnerHtml:function(list){
+		var showD = $("#dateBetween");showD.html('<option value="-1">请选择预约时间段</option>');
+		for(var i =0 ;i<list.length;i++){
+			showD.append('<option value="'+i+'">'+list[i].startTime+'-'+list[i].endTime+'（可预约数'+list[i].remainder+'）'+'</option>');
+		}
+	},
+	cleanApointTime:function(){//清空时间端得值
+		$("#dateBetween").html('<option value="0">请选择预约时间段</option>');
+		fillP.startTime ="";fillP.endTime="";
 	}
 }
 $(function(){
-	fillP.getAppintDateInfo();
 	fillP.businessList();
+	fillP.getAppintDateInfo();
 	fillP.getUserInfo();
-	$("#showPicker").val(util.getUrlParamZw("businessName"));
-	$('#showPicker').on('click', function () {
-        weui.picker(fillP.businessArr, {
-            onChange: function (result) {},
-            onConfirm: function (result) {
-            	 fillP.businessType = result[0].businessType;
-                 fillP.queueNo = result[0].queueNo;
-                 $("#showPicker").val(result[0].businessName);
-                 $("#dateBetween").val("");//清空子选折器的值
-                 fillP.appintTimePeriodInfo();//重新查询值
-            }
-        });
+	$('#showPicker').change(function () {
+	  var  vObj = fillP.businessArr[$("#showPicker").val()];
+      fillP.businessType = vObj.businessInfo.businessType;
+      fillP.queueNo = vObj.businessInfo.queueNo;
+      fillP.cleanApointTime();
+      fillP.appintTimePeriodInfo();//重新查询值
     });
 	
-    $('#showDatePicker').on('click', function () {
-        weui.picker(fillP.dateArr, {
-            onChange: function (result) { },
-            onConfirm: function (result) {
-            	fillP.appointDate = result[0];
-                $("#showDatePicker").val(result[0]);
-                $("#dateBetween").val("");//清空子选折器的值
-                fillP.appintTimePeriodInfo();//重新查询值
-            }
-        });
+    $('#showDatePicker').change(function () {
+    	if($("#showDatePicker").val()==-1){
+    		fillP.appointDate = "";
+    	}else{
+    		fillP.appointDate = $("#showDatePicker").val();
+    	}
+		fillP.cleanApointTime();
+   		fillP.appintTimePeriodInfo();//重新查询值
     });
    
-    $('#dateBetween').on('click', function () {
-    	if($("#showDatePicker").val().trim()==''){$.toast("请选择日期", "text");return;}
-        weui.picker(fillP.dateBtArr, {
-            onChange: function (result) { },
-            onConfirm: function (result) {
-                $("#dateBetween").val(result[0].startTime+"-"+result[0].endTime);
-                fillP.startTime = result[0].startTime;
-                fillP.endTime = result[0].endTime;
-            }
-        });
+    $('#dateBetween').change(function () {
+    	if($("#dateBetween").val()==-1){
+    		 fillP.startTime ="";
+    		 fillP.endTime = "";
+    	}else{
+    		var  vObj = fillP.dateBtArr[$("#dateBetween").val()];
+	    	 fillP.startTime = vObj.startTime;
+	    	 fillP.endTime = vObj.endTime;
+    	}
+    	 
     });
     
     $('#primaryBtn').on('click', function () {
-  		if($("#showPicker").val().trim()==''){$.toast("请选择预约业务", "text");return;}
-  		if($("#showDatePicker").val().trim()==''){$.toast("请选择预约日期", "text");return;}
-  		if($("#dateBetween").val().trim()==''){$.toast("请选择预约时间段", "text");return;}
+  		if($("#showPicker").val()==''){$.toast("请选择预约业务", "text");return;}
+  		if($("#showDatePicker").val()=='-1'){$.toast("请选择预约日期", "text");return;}
+  		if($("#dateBetween").val()=='-1'){$.toast("请选择预约时间段", "text");return;}
   		util.btnDisableT(this,1)
   		fillP.confirmAppointInfo();
     });
