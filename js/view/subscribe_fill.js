@@ -115,7 +115,11 @@ var fillP = {
 	dataBtInnerHtml:function(list){
 		var showD = $("#dateBetween");showD.html('<option value="-1">请选择预约时间段</option>');
 		for(var i =0 ;i<list.length;i++){
-			showD.append('<option value="'+i+'">'+list[i].startTime+'-'+list[i].endTime+'（可预约数'+list[i].remainder+'）'+'</option>');
+			if(list[i].remainder<=0){
+				showD.append('<option value="'+i+'" disabled=true>'+list[i].startTime+'-'+list[i].endTime+'（可预约数'+list[i].remainder+'）'+'</option>');
+			}else{
+				showD.append('<option value="'+i+'" >'+list[i].startTime+'-'+list[i].endTime+'（可预约数'+list[i].remainder+'）'+'</option>');
+			}
 		}
 	},
 	cleanApointTime:function(){//清空时间端得值
