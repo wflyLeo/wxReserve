@@ -86,6 +86,8 @@ var fillP = {
 				  }, function() {
 				 	 //点击取消后的回调函数
 				  });
+			}else{
+				$.toast(res.message, "text");
 			}
 		},true)
 	},
