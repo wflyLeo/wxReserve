@@ -22,7 +22,13 @@
 	</head>
 	<body>
 		<div class="page">
-			<!--<div class="top-banner"><img src="../image/topbav.png"></div>-->
+			 <!-- <div class="weui-pull-to-refresh__layer">
+			    <div class='weui-pull-to-refresh__arrow'></div>
+			    <div class='weui-pull-to-refresh__preloader'></div>
+			    <div class="down">下拉刷新</div>
+			    <div class="up">释放刷新</div>
+			    <div class="refresh">正在刷新</div>
+			  </div>-->
 			<div class="weui-cells__title">网点机构选择</div>
 			<div class="weui-cells" id="brankList"></div>
 			<div class="noting-view hiden">
@@ -36,5 +42,10 @@
 		    </p>
 		 </div>
 		<script src="../js/view/subscribe_select.js"></script>
+		<script>
+		/*	$(document.body).pullToRefresh(function () {
+				$(document.body).pullToRefreshDone();
+			});*/
+		</script>
 	</body>
 </html>
