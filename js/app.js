@@ -96,7 +96,7 @@ var util = {
 		if(this.isArray(obj) && obj.length === 0) {
 			return true
 		}
-		if(this.isString(obj) && obj == "undefined") {
+		if(this.isString(obj) && obj == "undefined" && obj == "null") {
 			return true
 		}
 		if(this.isObject(obj) && Object.keys(obj).length === 0) {
