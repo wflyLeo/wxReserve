@@ -6,7 +6,7 @@ var subP = {
 				todayFlag:todayFlag
 		},function(res){
 			if(res.length == 0){
-				if(todayFlag==0){$(".text").html("今天您还没有任何预约信息哦@^@</br><a class='a-color reloadAll aclick'>点击查看全部预约<a/>");}else{$(".text").html("您还没有任何预约信息哦@^@");}
+				if(todayFlag==0){}else{$(".text").html("您还没有任何预约信息哦@^@");}
 				$(".noting-view").show();$("#defaultBtn").hide();
 			}else{
 				$("#subscribeToDay").show();$(".noting-view").hide();
@@ -45,7 +45,7 @@ $(function(){
 	$("#primaryBtn").click(function(){
 		location.href = "subscribe_select.html";
 	})
-	$(document).on('touchstart','.reloadAll',function(){
+	$(document).on('touchstart','#reloadAll',function(){
 		subP.subList(1);
 	})
 	
