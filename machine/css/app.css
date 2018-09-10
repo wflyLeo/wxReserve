@@ -1,0 +1,79 @@
+html,body{
+  height: 100%;
+  background: #FBFBFB;
+}
+.badge-text{
+	margin-left: 5px;background-color: #15B61D;padding:2px 10px;
+}
+.badge-number{
+	margin-left: 5px;width: 20px;background-color: #15B61D;
+}
+.page .weui-cells{
+	font-size: 15px;
+}
+.weui-btn{
+	font-size: 16px;
+}
+.weui-animate-fade-in{
+	visibility: visible!important;
+}
+.weui-animate-slide-up{
+	font-size: 14px;
+}
+.weui-picker__hd,.toolbar .title,.toolbar .picker-button{
+	font-size: 15px;
+}
+.weui-input{font-size: 14px;}
+.weui-picker-modal .picker-center-highlight{
+	height: 36px;
+}
+.weui-picker-modal .picker-item{
+	height: 36px;
+	line-height: 36px;
+	font-size: 14px;
+}
+.color-gray{
+	background: darkgray;
+}
+.color-red{
+	background-color: #ED4F52;
+}
+.hiden{
+	display: none;
+}
+.show{
+	display:block
+}
+.noting-view{/*无数据时显示*/
+	width: 80%;margin: 60px auto;text-align: center;
+}
+.noting-view img{width: 40%;}
+.noting-view .text{color: darkgray;}
+/*.top-banner{width: 100%;margin-top: 20px;background-color: white;}
+.top-banner img{margin-left:10px;width: 50px;}*/
+.top-banner{position:relative;width: 100%;margin-top: 20px;background-color: white;text-align: center;}
+.top-banner img{height: 100px;width: 99%;}
+#primaryBtn,.phoneClick{/*//苹果机点击*/
+	cursor:pointer
+}
+.gray{
+	color: darkgray;
+}
+.quhao-bcolor{
+	background-color:#15b0b6;
+}
+.jiaohao-bcolor{
+	background-color:#409be6;
+}
+.wancen-bcolor{
+	background-color:#e64040bd;
+}
+.weizhi-bcolor{
+	background-color:#e64040;
+}
+.a-color{
+	color: dodgerblue;
+}
+.aclick{
+    cursor:pointer
+}
