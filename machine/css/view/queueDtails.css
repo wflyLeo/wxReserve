@@ -110,10 +110,21 @@
 	color: #BADDE4;
 	font-size: 1.3rem;
 }
-.current-name,.waiting-name{
+.current-name{
 	display: inline-block;
 	font-size: 1.3rem;
 	padding: 5% 5%;	
+}
+.waiting-name{
+	display: inline-block;
+	font-size: 1.0rem;
+	padding: 5% 1% 5% 3%;	
+	text-align: center;
+	width: 62%;
+}
+.waiting-name p{
+	width: 95%;
+	white-space: nowrap;　　/* 文字不折行 */
 }
 .miss-retry{
 	background: #0F6A64;
@@ -128,11 +139,26 @@
 	padding: 3% 0%;
 	padding-left: 3%;
 	font-size: 0.9rem;
+	border-bottom: 1px solid #1c8e87;
 }
 .guide-img{
 	background: #16A09B;
-	padding: 5% 0%;
+	padding: 2% 0%;
 }
+
+.imageul{
+	background: #16A09B;
+}
+.imageul li{
+	list-style: none;
+	width: 33%;
+	float: left;
+	text-align: center;
+}
+.imageul li img{
+	width: 20%;
+}
+
 
 
 
