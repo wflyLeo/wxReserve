@@ -87,6 +87,7 @@
 }
 .waiting-progress{
 	margin-top: 2px;
+	border: 1px solid #0D5755;
 }
 .current-text{
 	display: inline-block;
@@ -117,7 +118,7 @@
 }
 .waiting-name{
 	display: inline-block;
-	font-size: 1.0rem;
+	font-size: 0.97rem;
 	padding: 5% 1% 5% 3%;	
 	text-align: center;
 	width: 62%;
